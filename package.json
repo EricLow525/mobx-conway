@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "test": "react-app-rewired test --env=jsdom"
+    "test": "react-app-rewired test --watch"
   },
   "devDependencies": {
     "react-app-rewired": "^1.6.2"

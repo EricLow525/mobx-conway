@@ -40,7 +40,6 @@ const GridWrapper = styled('section') `
   }
 `
 
-
 const App = inject('controller')(
   observer(
     class App extends React.Component {
