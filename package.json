@@ -1,0 +1,22 @@
+{
+  "name": "mobx-conway",
+  "version": "0.1.0",
+  "dependencies": {
+    "emotion": "^9.2.10",
+    "mobx": "^5.1.2",
+    "mobx-react": "^5.2.8",
+    "react": "^16.5.2",
+    "react-app-rewire-mobx": "^1.0.9",
+    "react-dom": "^16.5.2",
+    "react-emotion": "^9.2.10",
+    "react-scripts": "1.1.5",
+    "recompose": "^0.30.0"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "test": "react-app-rewired test --env=jsdom"
+  },
+  "devDependencies": {
+    "react-app-rewired": "^1.6.2"
+  }
+}
