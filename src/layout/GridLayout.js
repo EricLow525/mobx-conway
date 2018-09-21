@@ -20,23 +20,6 @@ class GridLayout {
   }
 
   /**
-   * return grid layout of list array
-   * @param {array} list
-   */
-  layoutItems(list) {
-    let items = [];
-    for (let row = 0; row < this._numRows; row++) {
-      let rowItems = [];
-      for (let col = 0; col < this._numCols; col++) {
-        const listItem = list[this.getListIndex(row, col)];
-        rowItems.push(listItem);
-      }
-      items.push(rowItems);
-    }
-    return items;
-  }
-
-  /**
    * convert list index into grid layout index
    * @param {number} index
    */
