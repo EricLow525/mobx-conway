@@ -1,4 +1,7 @@
-import { action, observable } from 'mobx'
+import { action, observable } from 'mobx';
+
+const DEAD = false;
+const ALIVE = true;
 
 /**
  * Game Store
@@ -16,11 +19,13 @@ class Game {
    * A list of cells.
    * we don't mutate cells to optimize performance.
    */
-  @observable.ref _cells = null;
-  @observable _generation = 0;
+  @observable.ref
+  _cells = null;
+  @observable
+  _generation = 0;
 
   reset() {
-    this.setCells(new Array(this._layout.totalLength).fill(false));
+    this.setCells(new Array(this._layout.totalLength).fill(DEAD));
     this.setGeneration(0);
   }
 
@@ -30,25 +35,20 @@ class Game {
   goToNextGeneration() {
     let diffCount = 0;
     const nextCells = this._cells.map((cell, index) => {
-      let neighbours = this._layout.getNeighbours(index);
-
-      let aliveNeighbours = neighbours.filter(listIndex => this._cells[listIndex]);
-
-      if (cell) {
+      const neighbours = this._layout.getNeighbours(index);
+      const aliveCount = neighbours.filter(listIndex => this._cells[listIndex])
+        .length;
+      if ((cell && aliveCount < 2) || aliveCount > 3) {
         // RULE NO. 1 AND NO. 3
-        if (aliveNeighbours.length < 2 || aliveNeighbours.length > 3) {
-          diffCount++;
-          return false;
-        }
-      } else {
+        diffCount++;
+        return DEAD;
+      } else if (!cell && aliveCount === 3) {
         // RULE NO. 4
-        if (aliveNeighbours.length === 3) {
-          diffCount++;
-          return true;
-        }
+        diffCount++;
+        return ALIVE;
       }
 
-      // REST GOES TO RULE NO. 2
+      // RULE NO. 2
       return cell;
     });
 
@@ -76,7 +76,7 @@ class Game {
    * action for set cells
    */
   @action
-  setCells(items)  {
+  setCells(items) {
     if (items.length === this._layout.totalLength) {
       this._cells = [...items];
       return true;

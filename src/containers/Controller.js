@@ -5,15 +5,6 @@ import { inject, observer } from 'mobx-react';
 import Container from '../components/Container';
 import FlatButton from '../components/FlatButton';
 
-const Generation = styled('p')`
-  font-family: Roboto;
-  font-size: 13px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #222;
-`;
-
-
 const SizeInput = styled('input')`
   font-family: Roboto;
   font-size: 13px;
